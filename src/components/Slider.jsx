@@ -3,14 +3,15 @@ import ArrowLeftOutlinedIcon from '@mui/icons-material/ArrowLeftOutlined';
 import ArrowRightOutlinedIcon from '@mui/icons-material/ArrowRightOutlined';
 import { useState } from "react";
 import { sliderItems } from "../data";
+import {mobile} from "../responsive"
 
 const Container = styled.div`
     width: 100%;
     height: 100vh;
     display: flex;
-    /*  background-color: coral; */
     position: relative;
     overflow: hidden;
+    ${mobile({display:"none"})}
 `
 const Arrow = styled.div`
     width: 50px;
@@ -44,7 +45,6 @@ const ImgContainer = styled.div`
 const InfoContainer = styled.div`
     flex:1;
     padding: 50px;
-    //background-color: rgb(240,241,245);
 `
 
 const Image = styled.img`
