@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState }  from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -12,8 +12,12 @@ const Container = styled.div`
 const Wrapper = styled.div`
  display: flex;
  flex-direction: row;
- gap: 20px;
+ gap: 15px;
  font-size: 15px;
+ flex-wrap: wrap;
+ width:500px;
+ justify-content: center;
+ align-items: center;
 `
 const H1 = styled.h1`
  
@@ -38,161 +42,43 @@ const Td = styled.td`
 `
 
 function A20() {
+
+    const [puzzle, setPuzzle] = useState([]);
+
+    const fetchData = () => {
+        return fetch("http://localhost:5000/api/v1/a20/models")
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("in")
+                setPuzzle(data)
+            })
+            .catch(err => console.log(err));
+    }
+
+    useEffect(() => {
+        fetchData();
+    },[])
+
   return (
     <Container>
         <H3>Level 1</H3>
         <Wrapper>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-        </Wrapper>
+            {
+                puzzle.map((model) =>{
+                    return(
+                        <Table>
+                            <Tr> <Td>{model.c1}</Td> <Td>{model.c2}</Td> <Td>{model.c3}</Td> <Td>{model.c4}</Td> <Td>{model.c5}</Td> </Tr>
+                            <Tr> <Td>{model.c6}</Td> <Td>{model.c7}</Td> <Td>{model.c8}</Td> <Td>{model.c9}</Td> <Td>{model.c10}</Td> </Tr>
+                            <Tr> <Td>{model.c11}</Td> <Td>{model.c12}</Td> <Td>{model.c13}</Td> <Td>{model.c14}</Td> <Td>{model.c15}</Td> </Tr>
+                            <Tr> <Td>{model.c16}</Td> <Td>{model.c17}</Td> <Td>{model.c18}</Td> <Td>{model.c19}</Td> <Td>{model.c20}</Td> </Tr>
+                            <Tr> <Td>{model.c21}</Td> <Td>{model.c22}</Td> <Td>{model.c23}</Td> <Td>{model.c24}</Td> <Td>{model.c25}</Td> </Tr>
+                        </Table>
+                    );
+                })
+            }
         
-        <Wrapper>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-        </Wrapper>
-        <Wrapper>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-        </Wrapper>
-        <Wrapper>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
         </Wrapper>
 
-        <Wrapper>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-            <Table>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-                <Tr> <Td>0</Td> <Td>1</Td> <Td>0</Td> <Td>8</Td> <Td>0</Td> </Tr>
-            </Table>
-        </Wrapper>
     </Container>
   )
 }
