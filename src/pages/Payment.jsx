@@ -1,9 +1,6 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components"
 import { mobile } from "../responsive";
-import {login} from "../redux/apiCalls"
-import { Satellite } from "@mui/icons-material";
+import StripeCheckout from "react-stripe-checkout";
 
 const Container = styled.div`
     width: 100vw;
@@ -43,10 +40,6 @@ const Button = styled.button`
   color: #fff;
   cursor: pointer;
   margin-bottom: 10px;
-  &:disabled{
-    color: green;
-    cursor: not-allowed;
-  }
 `;
 const Link = styled.a`
   margin: 5px 0px;
@@ -54,37 +47,33 @@ const Link = styled.a`
   text-decoration: underline;
   cursor: pointer;
 `
-const Error = styled.span`
-  color: red;
-`
 
-const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const {isFetching, error} = useSelector((state) => state.user);
-
-  const dispatch = useDispatch()
-  console.log("isFetching ==> "+isFetching)
-  const handleClick = (e)=> {
-    e.preventDefault();
-    login(dispatch, {username, password});
+const Payment = () => {
+  const onTonken = (token)=>{
+    console.log("Token => ", token);
   }
+const KEY = process.env.SRIPE_KEY;
 
   return (
     <Container>
         <Wrapper>
-        <Title>SIGN IN</Title>
         <Form>
-          <Input placeholder="username" onChange={(e)=> setUsername(e.target.value)}/>
-          <Input type="password" placeholder="password" onChange={(e)=> setPassword(e.target.value)}/>
-          <Button onClick={(e)=>handleClick(e)} disabled={isFetching}>LOGIN</Button>
-          {error && <Error>Something went wrong</Error>}
-          <Link>DON'T YOU REMEMBER THE PASSSWORD ?</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
+          <StripeCheckout
+            name="Yo Shop"
+            image="/images/bip_logo.png"
+            billingAddress
+            shippingAddress
+            description="Your total is 20$"
+            amount={2000}
+            token={onTonken}
+            stripeKey={KEY}
+          >
+            <Button>Pay Now</Button>
+          </StripeCheckout>
         </Form>
       </Wrapper>
     </Container>
   )
 }
 
-export default Login
+export default Payment
